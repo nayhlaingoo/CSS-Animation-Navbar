@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Animation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        background-color: #f1f5f9;
+      }
+      nav {
+        background-color: #e6eaef;
+        border-bottom: 1px solid #d9dee4;
+        padding: 1.5rem 0.3rem;
+      }
+      .nav_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        width: min(95%, 1000px);
+        margin: auto;
+      }
+      nav a {
+        color: #000;
+        text-decoration: none;
+      }
+      nav li {
+        display: inline-block;
+        margin-right: 20px;
+      }
+      nav li::after {
+        content: "";
+        display: block;
+        width: 0%;
+        margin: auto;
+        height: 2px;
+        background-color: #ffa500;
+        transition: width 0.5s ease-in-out;
+      }
+      nav li:hover::after {
+        width: 100%;
+      }
+
+      /* dropdown */
+      .dropdown {
+        position: relative;
+      }
+      .dropdown span {
+        background-color: #ffa500;
+        padding: 10px 14px;
+        border-radius: 2px;
+      }
+
+      .dropdown_container {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        animation: fade-In-Down 0.5s ease-in-out forwards;
+        padding-top: 2.3rem;
+      }
+      .dropdown_list {
+        background-color: #f1f5f9;
+        box-shadow: 0 25px 50px -15px rgb(0 0 0 / 0.25);
+        border: 1px solid #d8dfe7e3;
+        border-radius: 3px;
+        padding: 12px 0px;
+        width: 200px;
+      }
+      .dropdown_list a {
+        display: block;
+        margin: 0.4rem 0;
+        padding: 0.6rem 1.5rem;
+        transition: background-color 0.2s ease;
+      }
+      .dropdown_list a:hover {
+        background-color: #e4eaef;
+      }
+      .dropdown:hover .dropdown_container {
+        animation: fade-In-Up 0.5s ease-in-out forwards;
+      }
+
+      @keyframes fade-In-Up {
+        0% {
+          opacity: 0;
+          transform: translateY(10%);
+        }
+        100% {
+          transform: translateY(0%);
+        }
+      }
+      @keyframes fade-In-Down {
+        0% {
+          transform: translateY(0%);
+        }
+        100% {
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(10%);
+        }
+      }
+      .dropdown_list .mobile {
+        display: none;
+      }
+
+      @media screen and (max-width: 540px) {
+        .nav_container ul {
+          display: none;
+        }
+        .dropdown {
+          margin: auto;
+          width: 100%;
+        }
+        .dropdown_container {
+          width: 100%;
+        }
+        .dropdown_list .mobile {
+          display: block;
+        }
+        .dropdown_list {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav_container">
+        <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">PAGE</a></li>
+          <li><a href="#">ABOUT US</a></li>
+          <li><a href="#">CONTACT US</a></li>
+        </ul>
+        <div class="dropdown">
+          <span>DROPDOWN</span>
+          <div class="dropdown_container">
+            <div class="dropdown_list">
+              <a href="#">Page One</a>
+              <a href="#">Page Two</a>
+              <a href="#">Page Three</a>
+              <div class="mobile">
+                <a href="#">Home</a>
+                <a href="#">Page</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>
